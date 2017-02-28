@@ -1,0 +1,114 @@
+Getting Help
+
+$ git help <verb>
+$ git <verb> --help
+$ man git-<verb>
+e.g $ git help config
+
+Commands to configure git with user name and e-mail address (to tell Git who you are):
+$ git config --global user.name “Tapi2000”
+$ git config --global user.email "takwada2000@yahoo.com"
+$ git config --global –list
+ 
+Command	description
+pwd							print working directory
+hostname					my computer's network name
+mkdir						make directory
+cd							change directory
+ls							list directory
+rmdir						remove directory
+rm -rf <file name>			deletes the named file of folder
+del							Remove-Item, Deletes files and folders.
+erase						Remove-Item, Deletes files and folders.
+pushd						push directory
+popd						pop directory
+cp							copy a file or directory e.g. > awesome.txt thefourthfile.txt
+New-Item					Make an empty file. E.g > New-Item iamcool.txt -type file
+robocopy					robust copy
+mv							move a file or directory
+more or less				View a file. page through a file. Type q to get out the file
+type						print the whole file
+forfiles					run a command on lots of files
+dir -r						find files
+select-string				find things inside files
+help						read a manual page
+helpctr						find what manual page is appropriate
+echo						print some arguments
+set							export/set a new environment variable
+exit						exit the shell
+rm -rf <file name>			deletes the named file of folder
+runas						DANGER! Become super user root DANGER!
+git clone <paste url here>					Used to get a copy a repository into the local system
+git clone /path/to/repository				Create a working copy of a local repository:
+git clone username@host:/path/to/repository		use for a remote server
+For existing Projects: 
+	1) switch to your repository's directory and type:
+		cd /path/to/your/repo
+	2) connect your existing repository to Bitbucket as follows:
+		a) git remote add origin https://Tapi2000@bitbucket.org/Tapi2000/bitbucketstationlocations.git
+		b) git push -u origin master
+If starting a project from scratch
+	1. git clone https://Tapi2000@bitbucket.org/Tapi2000/bitbucketstationlocations.git
+	2. cd bitbucketstationlocations
+	3. echo "# My project's README" >> README.md
+	4. git add README.md
+	5. git commit -m "Initial commit"
+	6. git push -u origin master
+		
+git add <filename>							Add one file to staging area
+git add *									Add multiple files to staging area
+git status									Shows status of current directory
+clear										Clears command line histrory
+Git init									Intiaises the local directory for Git to start tracking changes. 
+											If ‘git status’ returns lots of files, type ‘git init’ before ‘git status’.
+git status --untracked-files=no				If you want git to show only tracked files
+Git pull origin master						Updates local repository with any changes that might have occurred on the remote repository. Always recommended to perform a ‘pull’ just before a ‘push’
+Git push origin master						Updates the remote repository with the changes made in local repository
+Git ls-files								To list files being tracked by git.  Can also be used to find out if your file is being tracked by git in the current repository
+Git commit –am “adding more text”			Command to commit and add in a single step
+git commit -a								commit any files you've added with git add, also commit any files you've changed since then
+git remote add origin <server>				connecting a remote server to your local repository to be able to push to it.
+git remote -v								List all currently configured remote repositories.
+git checkout -b <branchname>				create a new branch and switch to it 
+git checkout <branchname>					switch from one branch to another 
+rm –rf <file name>							deletes named file or folder
+git branch									List all the branches in your repo, and also tell you what branch you're currently in:
+git branch <branchname>						create a new branch name specified in <>
+git checkout <branchname>					move into the named branch.
+git branch -d <branchname>					Delete the feature branch
+git push origin <branchname>				Push the branch to your remote repository, so others can use it:
+git push --all origin						Push all branches to your remote repository
+git push origin :<branchname>				Delete a branch on your remote repository:
+git pull									Fetch and merge changes on the remote server to your working directory:
+git merge <branchname>						To merge a different branch into your active branch:
+git diff									View all the merge conflicts
+git diff --base <filename>					View the conflicts against the base file
+git diff <sourcebranch> <targetbranch>		Preview changes, before merging:
+git add <filename>							After you have manually resolved any conflicts, you mark the changed file
+git tag 1.0.0 <commitID>					You can use tagging to mark a significant changeset, such as a release:	
+git log										CommitId is the leading characters of the changeset ID, up to 10, but must be unique. Get the ID using
+git push --tags origin						Push all tags to remote repository
+git checkout -- <filename>					If you mess up, you can replace the changes in your working tree with the last content in head:
+											Changes already added to the index, as well as new files, will be kept
+git fetch origin							Instead, to drop all your local changes and commits, fetch the latest history from the server and point your local master branch at it, do this:							
+											git fetch origin
+											git reset --hard origin/master
+git grep "foo()"							Search the working directory for foo():
+
+
+
+===========How to open NotePad++ in Gitbash================
+start notepad++ 
+start notepad++ <filename>
+alias np='start notepad++'
+np <filename>
+===========How to open other programs in Gitbash=================
+start Acrobat
+start Acrobat "The Cpp Language Tutorial.pdf"
+start WINWORD.EXE //to open MS word
+Start EXCEL.EXE // to open Excel 
+
+==========Table of Basic PowerShell Commands===========
+https://blogs.technet.microsoft.com/heyscriptingguy/2015/06/11/table-of-basic-powershell-commands/
+
+
