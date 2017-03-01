@@ -4,7 +4,9 @@ $ git help <verb>
 $ git <verb> --help
 $ man git-<verb>
 e.g $ git help config
-
+ 
+ testing
+ 
 Commands to configure git with user name and e-mail address (to tell Git who you are):
 $ git config --global user.name “Tapi2000”
 $ git config --global user.email "takwada2000@yahoo.com"
