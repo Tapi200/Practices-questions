@@ -80,76 +80,88 @@ If instead your program uses a switch statement, modify it to use if/else-if sta
 
 #include <iostream>
 using namespace std;
+/*
+ int main() {
+ int bChoice;
 
-int main(){
-	int bChoice;
-		cout << "Choose your beverage by entering the corresponding number between 1 and 5" << endl;
-		cout << "1. Coke" << endl; //flush
-		cout << "2. Water" << endl; //flush
-		cout << "3. Sprite" << endl; //flush
-		cout << "4. Tea" << endl; //flush
-		cout << "5. Beer" << endl; //flush
-		
-		cin >> bChoice;
-		
-		if(bChoice ==1){cout <<"Please collect your Coke"<< endl;}
-		if(bChoice ==2){cout <<"Please collect your Water"<< endl;}
-		if(bChoice ==3){cout <<"Please collect your Sprite"<< endl;}
-		if(bChoice ==4){cout <<"Please collect your Tea"<< endl;}
-		if(bChoice ==5){cout <<"Please collect your Beer"<< endl;}
+ cout << "1. Coke" << endl; //flush
+ cout << "2. Water" << endl; //flush
+ cout << "3. Sprite" << endl; //flush
+ cout << "4. Tea" << endl; //flush
+ cout << "5. Beer" << endl; //flush
 
-		//string return_beverage(){
-		//	if(bChoice ==1){return Coke}
-		}
-return 0:
-}
-*********SWITCH********************************
-int main(){
-	int bChoice;
-		
-		cout << "1. Coke" << endl; //flush
-		cout << "2. Water" << endl; //flush
-		cout << "3. Sprite" << endl; //flush
-		cout << "4. Tea" << endl; //flush
-		cout << "5. Beer" << endl; //flush
-		
-		cout << "Choose your beverage by entering the corresponding number between 1 and 5" << endl;
-		
-		cin >> bChoice;
-		//validate choice, if the user enters a choice other than 1-5 then it will output "Error. choice was not valid, here is your money back
-		
-		string validate_input(bChoice){
-			if(bChoice!1 ||bChoice!2||bChoice!3 ||bChoice!4 ||bChoice!5) {
-				cout << Error. choice was not valid, here is your money back << endl;
-			}
-		}
-		
+ cout << "Choose your beverage by entering the corresponding number between 1 and 5" << endl;
 
-		switch(cChoice){
-		case 1:
-		cout <<"Please collect your Coke"<< endl;
-		break;
-		case 2:
-		cout <<"Please collect your Water"<< endl;
-		break;
-		case 3:
-		cout <<"Please collect your Sprite"<< endl;
-		case 4:
-		cout <<"Please collect your Tea"<< endl;
-		break;
-		default:
-		cout <<"Please collect your Beer"<< endl;
-		break;
+ cin >> bChoice;
+
+ if(bChoice ==1){cout <<"Please collect your Coke"<< endl;}
+ if(bChoice ==2){cout <<"Please collect your Water"<< endl;}
+ if(bChoice ==3){cout <<"Please collect your Sprite"<< endl;}
+ if(bChoice ==4){cout <<"Please collect your Tea"<< endl;}
+ if(bChoice ==5){cout <<"Please collect your Beer"<< endl;}
+
+ //string return_beverage(){
+ //	if(bChoice ==1){return Coke}
+
+ return 0;
+ }
+ */
+
+bool validate_input(int bChoice) {
+
+	if (bChoice == 1 || bChoice == 2 || bChoice == 3 || bChoice == 4
+			|| bChoice == 5) {
+		return true;
 	}
-return 0:
+	return false;
 }
 
+int main() {
+	int bChoice;
+
+	cout << "1. Coke" << endl; //flush
+	cout << "2. Water" << endl; //flush
+	cout << "3. Sprite" << endl; //flush
+	cout << "4. Tea" << endl; //flush
+	cout << "5. Beer" << endl; //flush
+
+	cout
+			<< "Choose your beverage by entering the corresponding number between 1 and 5"
+			<< endl;
+
+	cin >> bChoice;
+
+	//validate choice, if the user enters a choice other than 1-5 then it will output "Error. choice was not valid, here is your money back
+
+	if (validate_input(bChoice) == true) {
+		switch (bChoice) {
+		case 1:
+			cout << "Please collect your Coke" << endl;
+			break;
+		case 2:
+			cout << "Please collect your Water" << endl;
+			break;
+		case 3:
+			cout << "Please collect your Sprite" << endl;
+			break;
+		case 4:
+			cout << "Please collect your Tea" << endl;
+			break;
+		default:
+			cout << "Please collect your Beer" << endl;
+			break;
+		}
+	} else {
+		cout << "Error choice was not valid, here is your money back" << endl;
+	}
+}
 
 
 
 
 /*
-While( user == gullible )
+TheWhile5game
+While ( user == gullible )
 Requires:
 variables, data types, and numerical operators
 basic input/output
@@ -163,7 +175,36 @@ Then tell the user "Hey! you weren't supposed to enter 5!" and exit the program.
 
 ★★ Modify the program so that it asks the user to enter any number other than the number equal to the number of times they've been asked to enter a number. (i.e on the first iteration "Please enter any number other than 0" and on the second iteration "Please enter any number other than 1"m etc. etc. The program must behave accordingly exiting when the user enters the number they were asked not to.)
 */
+#include <iostream>
+using namespace std;
 
+int main() {
+	int userValue;
+
+	cout << "Enter any number other than 5" << endl;
+	cin >> userValue;
+
+	int count = 1;
+
+	while (userValue != 5) {
+
+		cout << "Enter any number other than 5" << endl;
+		cin >> userValue;
+
+		count = count + 1;
+
+		if (count == 10) {
+			break;
+		}
+	}
+
+	if (count == 10) {
+		cout << "Wow, you're more patient then I am, you win." << endl;
+	} else {
+	cout << "Hey! you weren't supposed to enter 5!" << endl;
+	}
+	return 0;
+}
 /*________________________________________________________________________________
 Pancake Glutton
 Requires:
