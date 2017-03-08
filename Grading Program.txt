@@ -304,7 +304,6 @@ Person 5: ate 0 pancakes
  }
  return 0;
  }
-w
 
 /*_________________________________________________________________________________
 Bracketing Search
@@ -325,6 +324,53 @@ The program must let the user continue to guess until the user correctly guesses
 
 ★★★★ Modify the program so that no matter what number the user thinks of (1-100) the computer can guess it in 7 or less guesses.
 */
+
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+using namespace std;
+
+bool check_guess(int guess, int random) {
+	if (guess == random) {
+		cout << "You guessed the correct number" << endl;
+		return true;
+	}
+	if (guess < random) {
+		cout << "Guess too low" << endl;
+		return false;
+	}
+	if (guess > random) {
+		cout << "Guess too high" << endl;
+		return false;
+	}
+}
+
+int main() {
+
+	int rNumber;
+	int rGuess;
+	int finished = false;
+	int guesses = 0;
+
+	srand((unsigned) time(0));
+
+	rNumber = rand() % 100 + 1;
+
+	cout << rNumber << endl;
+
+	cout << "Guess the number" << endl;
+
+	while (!finished) {
+		cin >> rGuess;
+		guesses += 1;
+		finished = check_guess(rGuess, rNumber);
+	}
+	cout << "number of guesses:  " << guesses << endl;
+	return 0;
+}
+
+
 
 /*_________________________________________________________________________________
 Tic Tac Toe
