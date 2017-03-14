@@ -157,8 +157,6 @@ int main() {
 }
 
 
-
-
 /*
 TheWhile5game
 While ( user == gullible )
@@ -447,7 +445,9 @@ Write a function titled say_hello() that outputs to the screen "Hello"
 ★★ Make another function that takes two integers arguments and then returns an integer that is the product of the two integers.
 (i.e., integer1: 4, Integer2: 5 returns: 20)
 
-★★★ Make a function called half() that takes an integer argument. The function must print the number it received to the screen, then the program should divide that number by two to make a new number. If the new number is greater than zero the function then calls the function half() passing it the new number as its argument. If the number is zero or less than the function exits
+★★★ Make a function called half() that takes an integer argument. The function must print the number it received to the screen,
+then the program should divide that number by two to make a new number. If the new number is greater than zero the function then 
+calls the function half() passing it the new number as its argument. If the number is zero or less than the function exits
 
 Call the function half() with an argument of 100, the screen output should be
 100
@@ -457,7 +457,32 @@ Call the function half() with an argument of 100, the screen output should be
 ...
 1.
 */
+#include <iostream>
+using namespace std;
 
+int main(){
+	string say_Hello(int n){
+		for (int i = 1; i<n+1;i ++){
+			cout<<"Hello"<<endl;
+		}
+	}
+int Product(int x, int y){
+	int sum = x * y;
+	return sum;
+}
+
+double half(int x){
+	cout<< x << endl;
+	double new_x = x/2;
+	cout << new_x << endl;
+		while(new_x < 1){
+			new_x /=2;
+			cout << new_x << endl;
+		}
+}
+return 0;
+
+}
 /*_________________________________________________________________________________
 Strings are your friends, until they betray you.
 Requires:
@@ -467,7 +492,6 @@ logic (if statements, switch statements)
 loops (for, while, do-while)
 functions
 strings & string functions
-
 
 Write a program that asks for a user first name and last name separately.
 The program must then store the users full name inside a single string and out put it to the string.
@@ -486,6 +510,35 @@ John Smith -> Jzhn Smzth
 i.e.
 John Smith -> htimS nhoJ
 */
+#include <iostream>
+using namespaces std;
+
+int main(){
+	string name1;
+	string name2;
+	string fullName;
+	
+	cout << "Enter your first name"<< endl;
+	cin >>name1;
+	
+	cout<<"Enter your second name"<< endl;
+	cin >>name2;
+	
+	fullName = name 1 + " " name2;
+	cout<<name1 << " "<<name2<<endl;
+	fullName = name 1 + " " name2;
+	cout<< fullName1 << endl;
+	
+	string replace(string f, string s){
+		
+	}
+	
+	
+	
+return 0;
+}
+
+
 
 /*_______________________________________________________________________________
 Graduation:
