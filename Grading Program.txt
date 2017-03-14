@@ -527,31 +527,55 @@ i.e.
 John Smith -> htimS nhoJ
 */
 #include <iostream>
-using namespaces std;
+#include <string>
+using namespace std;
 
-int main(){
+void replace_letter(string str) {
+
+	for (size_t i = 0; i < str.length(); ++i) {
+		if (str[i] == 'a') {
+			str.erase(i, 1);
+			str.insert(i, "z");
+		}
+		if (str[i] == 'e') {
+			str.erase(i, 1);
+			str.insert(i, "z");
+		}
+		if (str[i] == 'i') {
+			str.erase(i, 1);
+			str.insert(i, "z");
+		}
+		if (str[i] == 'o') {
+			str.erase(i, 1);
+			str.insert(i, "z");
+		}
+		if (str[i] == 'u') {
+			str.erase(i, 1);
+			str.insert(i, "z");
+		}
+
+	}
+	cout << str;
+}
+
+int main() {
 	string name1;
 	string name2;
 	string fullName;
-	
-	cout << "Enter your first name"<< endl;
-	cin >>name1;
-	
-	cout<<"Enter your second name"<< endl;
-	cin >>name2;
-	
-	fullName = name 1 + " " name2;
-	cout<<name1 << " "<<name2<<endl;
-	fullName = name 1 + " " name2;
-	cout<< fullName1 << endl;
-	
-	string replace(string f, string s){
-		
-	}
-	
-	
-	
-return 0;
+
+	cout << "Enter your first name" << endl;
+	cin >> name1;
+
+	cout << "Enter your second name" << endl;
+	cin >> name2;
+
+	fullName = name1 + " " + name2;
+
+	cout << "Full name is: " << fullName << endl;
+
+	replace_letter(fullName);
+
+	return 0;
 }
 
 
