@@ -460,29 +460,45 @@ Call the function half() with an argument of 100, the screen output should be
 #include <iostream>
 using namespace std;
 
-int main(){
-	string say_Hello(int n){
-		for (int i = 1; i<n+1;i ++){
-			cout<<"Hello"<<endl;
-		}
+void say_Hello(int n) {
+	for (int i = 1; i < n + 1; i++) {
+		cout << "Hello" << endl;
 	}
-int Product(int x, int y){
+}
+
+int Product(int x, int y) {
 	int sum = x * y;
 	return sum;
 }
 
-double half(int x){
-	cout<< x << endl;
-	double new_x = x/2;
-	cout << new_x << endl;
-		while(new_x < 1){
-			new_x /=2;
-			cout << new_x << endl;
-		}
-}
-return 0;
+void half(double x) {
+	double new_x;
 
+	bool isDone = false;
+
+	new_x = x / 2;
+
+	cout << x << endl;
+
+	while (isDone == false) {
+
+		if (new_x < 1) {
+			cout << 1 << endl;
+			isDone = true;
+		} else {
+			cout << new_x << endl;
+			new_x = new_x / 2;
+		}
+	}
 }
+
+int main() {
+//say_Hello(4);
+//cout<<Product(2,8);
+half(25);
+return 0;
+}
+
 /*_________________________________________________________________________________
 Strings are your friends, until they betray you.
 Requires:
