@@ -561,6 +561,12 @@ void replace_letter(string str) {
 	cout << str;
 }
 
+void reverseName(std::string str) {
+	for (int i = str.length() - 1; i >= 0; i--) {
+		cout << str[i];
+	}
+}
+
 int main() {
 	string name1;
 	string name2;
@@ -577,6 +583,8 @@ int main() {
 	cout << "Full name is: " << fullName << endl;
 
 	replace_letter(fullName);
+	
+	reverseName("PeterTosh")
 
 	return 0;
 }
@@ -585,53 +593,7 @@ int main() {
 #include <string>
 using namespace std;
 
-
-void reverseName(std::string str){
-	std::string String2("");
-	for(size_t i = 0; i < str.length(); i++){
-	    
-		String2.insert(0,string(str[i]));
-	}
-	cout << String2 << endl;
-	
-int main(){
-    
-void reverseName("Taps");
-
-//std::string String2("");
-
-//std::string sString("aaaa");
-//cout << sString << endl;
- 
-//String2.insert(0, string("t"));
-//cout << String2 << endl;
-
-//String2.insert(0, string("a"));
-//cout << String2 << endl;
-}
-
-
-int main()
-{
-	std::string s{ "Hello, world!" };
-	std::string::iterator i = s.begin();
-	while (i != s.end())
-	{
-		if (*i == '!')
-		{
-			s.insert(i, '!'); 
-			break; // inserting may invalidate our iterator so we can't use it again
-		}
-		++i;
-	}
- 
-	std::cout << s;
- 
-	return 0;
-}
-
-http://www.learncpp.com/cpp-tutorial/17-7-stdstring-inserting/
-http://cpp.sh/  
+http://cpp.sh/  - online C++ compiler.
 
 
 /*_______________________________________________________________________________
