@@ -316,11 +316,11 @@ Write a program that calculates a random number 1 through 100. The program then 
 If the user guesses too high or too low then the program should output "too high" or "too low" accordingly.
 The program must let the user continue to guess until the user correctly guesses the number.
 
-★ Modify the program to output how many guesses it took the user to correctly guess the right number.
+Modify the program to output how many guesses it took the user to correctly guess the right number.
 
-★★ Modify the program so that instead of the user guessing a number the computer came up with, the computer guesses the number that the user has secretely decided. The user must tell the computer whether it guesed too high or too low.
+Modify the program so that instead of the user guessing a number the computer came up with, the computer guesses the number that the user has secretely decided. The user must tell the computer whether it guesed too high or too low.
 
-★★★★ Modify the program so that no matter what number the user thinks of (1-100) the computer can guess it in 7 or less guesses.
+Modify the program so that no matter what number the user thinks of (1-100) the computer can guess it in 7 or less guesses.
 */
 
 #include <iostream>
@@ -420,7 +420,7 @@ or
 
 Allow the user (marked by G in the example) to move either up, down, left, or right each turn. If the player steps on a trap then they lose. If the make it to the treasure 'X' then they win.
 
-★★ Add enemies that move randomly in any direction once per turn. (enemies just like traps cause the player to lose if touched)
+Add enemies that move randomly in any direction once per turn. (enemies just like traps cause the player to lose if touched)
 
 HINT: Don't let the player move off the gameboard! You program will crash if they move off the top or bottom of the board!
 (the same holds true for enemies)
@@ -428,6 +428,30 @@ Last edited on Jul 27, 2009 at 3:05am
   Jul 26, 2009 at 11:46pm
 Bazzy (6281)
 */
+//function to construct matrix / board
+
+#include <iostream>
+#include <string>
+
+void board(){
+	std::string grid[7][10] = {};
+	for (int i = 0; i <7; i++){
+		for (int j = 0; j<10; j++){
+			grid[i][j] = '.';
+			std::cout << grid[i][j];
+		}
+		std::cout<<"\n";
+	}
+}
+
+int main()
+{
+board();
+
+}
+
+
+
 
 /*_________________________________________________________________________________
 Fun with Functions
@@ -596,8 +620,9 @@ using namespace std;
 http://cpp.sh/  - online C++ compiler.
 
 
-/*_______________________________________________________________________________
+____________________________________________________________________________
 Graduation:
+/*_______________________________________________________________________________
 Requires:
 variables, data types, and numerical operators
 basic input/output
@@ -643,25 +668,74 @@ The program should write all screen output to a file.
 When all the bunnies have died the program terminates.
 If the bunny population exceeds 1000 a food shortage must occur killing exactly half of the bunnies (randomly chosen)
 
-★ Modify the program to run in real time, with each turn lasting 2 seconds, and a one second pause between each announement.
+Modify the program to run in real time, with each turn lasting 2 seconds, and a one second pause between each announement.
 
-★★ Allow the user to hit the 'k' key to initiate a mass rabit cull! which causes half of all the rabits to be killed (randomly chosen).
+Allow the user to hit the 'k' key to initiate a mass rabit cull! which causes half of all the rabits to be killed (randomly chosen).
 
-★★★★ Modify the program to place the rabits in an 80x80 grid. Have the rabits move one space each turn randomly.
+Modify the program to place the rabits in an 80x80 grid. Have the rabits move one space each turn randomly.
+
 Mark juvenile males with m, adult males w/ M,
 juvenile females w/ f, adult femails w/ F
 radioactive mutant vampire bunnies with X
 
 Modify the program so that radioactive mutant vampire bunnies only convert bunnies that end a turn on an adjacent square.
+
 Modify the program so that new babies are born in an empty random adjacent square next to the mother bunny. (if no empty square exits then the baby bunny isn't born)
 
-★★★★★ Modify the program so that it saves each turn to a file and can play back at accelearted speed all subsequent turns.
+Modify the program so that it saves each turn to a file and can play back at accelearted speed all subsequent turns.
 */
 
+Best Online Resources to Practice C++
+/*
 
+0. http://www.cprogramming.com/challenge.html
+	Practice Problems:
+	
+1. www.codingbat.com
+Codingbat is a project started by Nick Parlante of Stanford University. It has a good number of practice problems with 
+levels of increasing difficulty. Solution of each problem is also given but in either Python or Java, which can be understood 
+easily even if you are not familiar with them. The strings section is really helpful in improving programming skills. 
 
+2. www.cprogramming.com
+Cprogramming is primarily composed of topic wise tutorials on C++, as discussed in the previous post. It has two portions viz. 
+Quizzes and Practice Problems.  Quizzes section has MCQ’s on different topics and concepts whereas the other one consists of 
+programming challenges with their solutions. 
 
+3. www.projecteuler.net
+Project Euler is a series of mainly mathematical programming challenges. It contains about 387 different problems, playing 
+with numbers, series and sequences. 
 
+4. www.gotw.ca
+Gotw is the acronym for Guru of the Week. The site was established many years ago by Herb Sutter who is Chair of the ISO 
+Standards Committee. It contains about 100 different problems and snippets of code along with their solutions. The material 
+present is a bit advanced but useful and highly accurate. 
+
+5. www.cstutoringcenter.com
+The programming challenges section of CS Tutoring Center contains 124 practice problems. They range over different difficulty 
+levels and their solutions could also be submitted online after registering.   
+
+6. www.spoj.pl
+Another similar site is the Holland based Sphere Online Judge. It has more or less 10,000 problems of different difficulty 
+levels. Most of the problems are not very easy to solve and their solutions could be submitted by registered users.
+ 
+7. www.daniweb.com
+DaniWeb is an online community for programmers to share and discuss their problems and bugs in coding. Its posts also contain 
+many programming problems to solve which are really helpful.
+
+8. www.ubuntuforums.org
+Ubunutu forums is an online community and contains a handful of good programming challenges in its Programming and Development 
+section. It also contains threads on the coding problems and issues.
+
+9. www.topcoder.com
+Top Coder is a community for software development and digital creation, more like a freelancing platform. It is intended for 
+those programmers who are sufficiently accomplished to take part in a programming competition. The competitions are held in 
+different categories at various difficulty levels and the winners are able to get the cash prizes. Its registration is free!
+
+10. www.codechef.com
+CodeChef is a non-profit educational initiative of Directi.It is a global competitive programming platform which supports over 35 
+programming languages and has a large community of programmers that helps students and professionals test and improve their coding skills. 
+Its objective is to provide a platform for practice, competition and improvement for both students and professional software developers. 
+*/
 
 
 
