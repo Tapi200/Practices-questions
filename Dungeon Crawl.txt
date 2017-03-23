@@ -1,0 +1,236 @@
+//Main file
+//============================================================================
+/*Dungeon Crawl
+ Requires:
+ variables, data types, and numerical operators
+ basic input/output
+ logic (if statements, switch statements)
+ loops (for, while, do-while)
+ arrays
+
+ Make a program that outputs a simple grid based gameboard to the screen using either numbers or characters.
+ i.e.
+ . . . . . . . . . .
+ . G . . . . . . . .
+ . . . . . . T . . .
+ . . . . . . . . . .
+ . . . . T . . . . .
+ . . . . . . T . . .
+ . . . . . . . . . X
+
+
+ or
+ 0 0 0 0 0 0 0 0 0 0
+ 0 5 0 0 6 0 0 0 0 0
+ 0 0 0 0 0 0 7 0 0 0
+ 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 7 0 0 0 0 0 0
+ 0 0 0 0 0 0 7 0 0 0
+ 0 0 0 0 0 0 0 0 0 4
+
+
+ Allow the user (marked by G in the example) to move either up, down, left, or right each turn. If the player steps on a trap then they lose. If the make it to the treasure 'X' then they win.
+
+ Add enemies that move randomly in any direction once per turn. (enemies just like traps cause the player to lose if touched)
+
+ HINT: Don't let the player move off the gameboard! You program will crash if they move off the top or bottom of the board!
+ (the same holds true for enemies)
+ Last edited on Jul 27, 2009 at 3:05am
+ Jul 26, 2009 at 11:46pm
+ Bazzy (6281)
+ */
+//============================================================================
+#include <iostream>
+#include "DCgame.h"
+using namespace std;
+
+int main() {
+
+	dcgame::DCgame game;
+	game.playgame();
+
+	system("PAUSE");
+	return 0;
+}
+//===============================================================================
+//cpp file
+/*
+ * DCgame.cpp
+ *
+ *  Created on: Mar 16, 2017
+ *      Author: Tapiwa
+ */
+
+#include "DCgame.h"
+#include <iostream>
+using namespace std;
+
+namespace dcgame {
+
+DCgame::DCgame() {
+	// TODO Auto-generated constructor stub
+
+}
+
+void DCgame::playgame() {
+	counter = 0;
+	clearboard();
+
+	bool isDone = false;
+
+	while (isDone = false) {
+
+		updateTraps();
+		intialiseUser();
+		Draw();
+
+/*		moveUser();
+		updateTraps();
+		Draw();
+		checkWin();*/
+	}
+}
+
+char gameboard[7][10] = { };
+
+void DCgame::clearboard() {
+	for (int i = 0; i < 7; i++) {
+		for (int j = 0; j < 10; j++) {
+			gameboard[i][j] = '0';
+		}
+	}
+}
+
+void DCgame::intialiseUser() {
+	char user = 'G';
+	int x, y; //the x and y coordinates for the initial user position
+
+	x = 1;
+	y = 1;
+
+	gameboard[x][y] = user;
+	x_new = x; //defining the current user position
+	y_new = y; //defining the current user position
+}
+
+void DCgame::updateTraps() {
+//update traps, update user position
+	gameboard[1][4] = 'T';
+	gameboard[2][6] = 'T';
+	gameboard[4][3] = 'T';
+	gameboard[5][6] = 'T';
+	gameboard[6][9] = 'X';
+}
+
+void DCgame::Draw() {
+	for (int i = 0; i < 7; i++) {
+		for (int j = 0; j < 10; j++) {
+			cout << gameboard[i][j] << " ";
+		}
+		cout << endl;
+	}
+}
+
+void DCgame::moveUser() {
+	char user = 'G';
+	char move;
+
+	bool isDone = false;
+
+	while (isDone == false) {
+		gameboard[x_new][y_new] = '0';
+		cout << "select next move (w,s,a,d) for (up, down, left or right)"
+				<< endl;
+		cin >> move;
+
+		switch (move) {
+		case 'w':
+			gameboard[x_new - 1][y_new] = user;
+			isDone = true;
+			x_new = x_new - 1;
+			break;
+		case 's':
+			gameboard[x_new + 1][y_new] = user;
+			isDone = true;
+			x_new = x_new + 1;
+			break;
+		case 'a':
+			gameboard[x_new][y_new - 1] = user;
+			isDone = true;
+			y_new = y_new - 1;
+			break;
+		case 'd':
+			gameboard[x_new][y_new + 1] = user;
+			isDone = true;
+			y_new = y_new + 1;
+			break;
+		}
+	}
+	counter += 1;
+}
+
+bool DCgame::checkWin() {
+
+	if (counter == 4) //to check win (using a counter) that user moved n times before hitting a trap.
+		return true;
+	if (gameboard[x_new][y_new] == 'X') {
+		return true;
+	}
+
+	return false;
+
+}
+bool DCgame::checkLoss() {
+
+	if (gameboard[x_new][y_new] == 'T') {  //check user does not hit trap
+		return true;
+	}
+
+	return false;
+}
+
+} /* namespace dcgame */
+
+//===============================================================================
+//Header file
+/*
+ * DCgame.h
+ *
+ *  Created on: Mar 16, 2017
+ *      Author: Tapiwa
+ */
+
+#ifndef DCGAME_H_
+#define DCGAME_H_
+
+namespace dcgame {
+
+class DCgame{
+
+public:
+	DCgame();
+	void playgame();
+	int x_new, y_new;
+	int counter;
+
+private:
+	char gameboard[7][10];
+	char user;
+
+	void clearboard();
+	void intialiseUser();
+	void updateTraps();
+	void Draw();
+	void moveUser();
+	void trap();
+	bool checkWin();
+	bool checkLoss();
+
+	//void user_move();
+
+};
+
+} /* namespace dcgame */
+
+#endif /* DCGAME_H_ */
+//=======================================================================================
