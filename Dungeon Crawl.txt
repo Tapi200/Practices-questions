@@ -46,12 +46,28 @@ using namespace std;
 
 int main() {
 
-	dcgame::DCgame game;
-	game.playgame();
+	char input;
+	bool endGame = false;
 
-	system("PAUSE");
+	dcgame::DCgame game;
+
+	while (endGame == false) {
+
+		game.playgame();
+
+		cout << "Play Again! Select (YES/NO)" << endl;
+
+		cin >> input;
+
+		if (input == 'N' || input == 'n') {
+			endGame = true;
+		}
+	}
+
+	//system("PAUSE");
 	return 0;
 }
+
 //===============================================================================
 //cpp file
 /*
@@ -64,30 +80,54 @@ int main() {
 #include "DCgame.h"
 #include <iostream>
 using namespace std;
+#include <time.h>
 
 namespace dcgame {
 
-DCgame::DCgame() {
-	// TODO Auto-generated constructor stub
+DCgame::DCgame() { // TODO Auto-generated constructor stub
 
 }
+//rows = 7;
+//cols = 10;
 
 void DCgame::playgame() {
 	counter = 0;
+	n = 15;
+
 	clearboard();
+	intialiseUser();
+	placeTraps();
+	randomiseEnemies();
+	updateEnemies();
+	Draw();
+	moveUser();
 
 	bool isDone = false;
 
-	while (isDone = false) {
-
-		updateTraps();
-		intialiseUser();
+	while (isDone == false) {
 		Draw();
+		moveUser();
 
-/*		moveUser();
-		updateTraps();
-		Draw();
-		checkWin();*/
+		if(x_new < 0 || x_new > 6 || y_new < 0 || y_new > 9){
+			cout << "You moved off the board. Game Over!"<<endl;
+			break;
+		}
+		if (checkWin() == true) {
+			isDone = true;
+			if (counter == 10) {
+				cout << "10 moves reached! You Win" << endl;
+				break;
+			} else {
+				cout << "X touched! You Win" << endl;
+				break;
+			}
+		}
+		//checkWin();
+		if (checkLoss() == true) {
+			isDone = true;
+			cout << "You either hit an Enemy or a trap! You Lose" << endl;
+			break;
+		}
 	}
 }
 
@@ -113,13 +153,44 @@ void DCgame::intialiseUser() {
 	y_new = y; //defining the current user position
 }
 
-void DCgame::updateTraps() {
+void DCgame::placeTraps() {
+	x_trap1 = 4, y_trap1 = 4;
+	x_trap2 = 2, y_trap2 = 6;
+	x_trap3 = 5, y_trap3 = 6;
+	x_trap4 = 6, y_trap4 = 8;
+	x_target = 6, y_target = 9;
+
+	gameboard[x_trap1][y_trap1] = 'T';
+	gameboard[x_trap2][y_trap2] = 'T';
+	gameboard[x_trap3][y_trap3] = 'T';
+	gameboard[x_trap4][y_trap4] = 'T';
+	gameboard[x_target][y_target] = 'X';
+}
+
+void DCgame::randomiseEnemies() {
 //update traps, update user position
-	gameboard[1][4] = 'T';
-	gameboard[2][6] = 'T';
-	gameboard[4][3] = 'T';
-	gameboard[5][6] = 'T';
-	gameboard[6][9] = 'X';
+	srand((unsigned) time(0));
+	x_enemy1 = rand() % 7;
+	x_enemy2 = rand() % 7;
+	x_enemy3 = rand() % 7;
+	x_enemy4 = rand() % 7;
+	x_enemy5 = rand() % 7;
+
+	y_enemy1 = rand() % 10;
+	y_enemy2 = rand() % 10;
+	y_enemy3 = rand() % 10;
+	y_enemy4 = rand() % 10;
+	y_enemy5 = rand() % 10;
+}
+
+void DCgame::updateEnemies(){
+
+	char enemy = 'E';
+	gameboard[x_enemy1][y_enemy1] = enemy;
+	gameboard[x_enemy2][y_enemy2] = enemy;
+	gameboard[x_enemy3][y_enemy3] = enemy;
+	gameboard[x_enemy4][y_enemy4] = enemy;
+	gameboard[x_enemy5][y_enemy5] = enemy;
 }
 
 void DCgame::Draw() {
@@ -166,30 +237,40 @@ void DCgame::moveUser() {
 			break;
 		}
 	}
+
+
 	counter += 1;
 }
 
 bool DCgame::checkWin() {
 
-	if (counter == 4) //to check win (using a counter) that user moved n times before hitting a trap.
+	if (counter == n) //to check win (using a counter) that user moved n times before hitting a trap.
 		return true;
-	if (gameboard[x_new][y_new] == 'X') {
+	if (gameboard[x_new][y_new] == gameboard[x_target][y_target]) {
 		return true;
 	}
-
 	return false;
-
 }
-bool DCgame::checkLoss() {
 
-	if (gameboard[x_new][y_new] == 'T') {  //check user does not hit trap
+bool DCgame::checkLoss() {
+	//check user does not hit trap
+	if (   gameboard[x_new][y_new] == gameboard[x_trap1][y_trap1]
+		|| gameboard[x_new][y_new] == gameboard[x_trap2][y_trap2]
+		|| gameboard[x_new][y_new] == gameboard[x_trap3][y_trap3]
+		|| gameboard[x_new][y_new] == gameboard[x_trap4][y_trap4]
+		|| gameboard[x_new][y_new] == gameboard[x_enemy1][y_enemy1]
+		|| gameboard[x_new][y_new] == gameboard[x_enemy2][y_enemy2]
+		|| gameboard[x_new][y_new] == gameboard[x_enemy3][y_enemy3]
+		|| gameboard[x_new][y_new] == gameboard[x_enemy4][y_enemy4]
+		|| gameboard[x_new][y_new] == gameboard[x_enemy5][y_enemy5]){
+
 		return true;
 	}
-
 	return false;
 }
 
 } /* namespace dcgame */
+
 
 //===============================================================================
 //Header file
@@ -210,23 +291,34 @@ class DCgame{
 public:
 	DCgame();
 	void playgame();
-	int x_new, y_new;
+	int x_new, y_new; //user coordinates
+	int x_trap1,x_trap2,x_trap3, x_trap4,x_target; //trap x-coordinates
+	int y_trap1,y_trap2,y_trap3, y_trap4,y_target; //trap y-coordinates
+
+	int x_enemy1,x_enemy2,x_enemy3, x_enemy4,x_enemy5; //enemy x-coordinates
+	int y_enemy1,y_enemy2,y_enemy3, y_enemy4,y_enemy5; //enemy y-coordinates
+
 	int counter;
+	int n;
+	int rows, cols;
 
 private:
 	char gameboard[7][10];
 	char user;
+	bool endGame;
 
 	void clearboard();
 	void intialiseUser();
-	void updateTraps();
+	void placeTraps();
+	void initialiseEnemies();
+	void randomiseEnemies();
+	void updateEnemies();
+
 	void Draw();
 	void moveUser();
 	void trap();
 	bool checkWin();
 	bool checkLoss();
-
-	//void user_move();
 
 };
 
