@@ -1368,40 +1368,51 @@ series.erase(series.begin()+1);
 Largest prime factor
 The prime factors of 13195 are 5, 7, 13 and 29.
 What is the largest prime factor of the number 600851475143 ?
-a) list all prime numbers btn 2 and N/2 (excluding N/2)
-		for(int i = 0, i < N/2; i++){
-			if(i % 2 !=0 && i % 3 !=0 &&i % 5 !=0 && i % 7 !=0 && i % 11 !=0)
-				a.push_back(i);
-			}
-b) form an array or vector of prime numbers : a[0]= 2, a[1]= 3, a[2] = 5, ....., a[k] = M. where M is the smallest largest prime number less than N/2.
-c) Find all the prime numbers that are factors of N.
-	for(i=0; i<k; i++){
-		if(N % a[i] ==0){
-			array1.pushback(a[i]); // create an array of prime factors of N
-		} 
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+   int N = 13195;
+   vector<int>series1;
+    for(int i=2; i <= N/2; i++){
+		if(N % i == 0){
+			series1.push_back(i);
+		}
 	}
 
-d) result is a list of prime numbers of N conatined in array1, However containg duplicates.
-e) check and remove duplicates and create new array, array2.
-			array2.pushback(array1[0]);
-			for(i=1; i<array1.length, i++){ 
-				if(array1[i]!=array1[i-1]){
-					array2.push_back(array1[i]);
-				}
+for(int i = 0; i < series1.size(); i++){
+    cout <<series1[i] << " ";
+}
+
+cout << endl;
+
+vector<int>series2;
+	
+	for(int i=0; i< series1.size(); i++){
+		int count = 0;
+		for(int j = 2; j < series1[i]; j++){
+			if(series1[i] % j == 0){
+			count++;
 			}
-we now have a set of unique prime numbers contained in array2.
-sum them up
-	sum = 0;
-	for(i=0;i<array2.length(); i++){
-		sum = sum + array[i];
+		}
+		if(count ==0){
+			series2.push_back(series1[i]);
+		}
 	}
-cout << sum << endl;
+	
+	for(int i = 0; i < series2.size(); i++){
+    
+    cout <<series2[i] << " ";
+    }
 
-int main(){
+    cout << endl;
 
-
+    cout << "Largest prime factors: "<< *(series2.end()-1) << endl;
+    
 return 0;
 }
+
 #######################################################################################################
 
 
