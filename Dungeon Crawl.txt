@@ -1,5 +1,6 @@
 //Main file
 //============================================================================
+//============================================================================
 /*Dungeon Crawl
  Requires:
  variables, data types, and numerical operators
@@ -47,6 +48,7 @@ using namespace std;
 int main() {
 
 	char input;
+	char input2;
 	bool endGame = false;
 
 	dcgame::DCgame game;
@@ -56,11 +58,40 @@ int main() {
 		game.playgame();
 
 		cout << "Play Again! Select (YES/NO)" << endl;
-
 		cin >> input;
-
 		if (input == 'N' || input == 'n') {
 			endGame = true;
+			break;
+		}
+
+		if (input == 'Y' || input == 'y') {
+			endGame = false;
+		}
+
+		else {
+
+			bool validResponse = false;
+
+			while (validResponse == false) {
+
+				cout << "Please letter Y or N" << endl;
+				cin >> input2;
+
+				if (input2 == 'N' || input2 == 'n') {
+					validResponse = true;
+					endGame = true;
+					break;
+				}
+
+				if (input2 == 'Y' || input2 == 'y') {
+					endGame = false;
+					validResponse = true;
+					endGame = false;
+					break;
+				}
+
+			}
+
 		}
 	}
 
@@ -108,15 +139,17 @@ void DCgame::playgame() {
 		Draw();
 		moveUser();
 
-		if(x_new < 0 || x_new > 6 || y_new < 0 || y_new > 9){
-			cout << "You moved off the board. Game Over!"<<endl;
+		if (x_new < 0 || x_new > 6 || y_new < 0 || y_new > 9) {
+			cout << "You moved off the board. Game Over!" << endl;
 			break;
 		}
+
 		if (checkWin() == true) {
 			isDone = true;
 			if (counter == 10) {
 				cout << "10 moves reached! You Win" << endl;
 				break;
+
 			} else {
 				cout << "X touched! You Win" << endl;
 				break;
@@ -145,8 +178,8 @@ void DCgame::intialiseUser() {
 	char user = 'G';
 	int x, y; //the x and y coordinates for the initial user position
 
-	x = 1;
-	y = 1;
+	x = 2;
+	y = 2;
 
 	gameboard[x][y] = user;
 	x_new = x; //defining the current user position
@@ -183,7 +216,7 @@ void DCgame::randomiseEnemies() {
 	y_enemy5 = rand() % 10;
 }
 
-void DCgame::updateEnemies(){
+void DCgame::updateEnemies() {
 
 	char enemy = 'E';
 	gameboard[x_enemy1][y_enemy1] = enemy;
@@ -209,27 +242,33 @@ void DCgame::moveUser() {
 	bool isDone = false;
 
 	while (isDone == false) {
+
 		gameboard[x_new][y_new] = '0';
-		cout << "select next move (w,s,a,d) for (up, down, left or right)"
-				<< endl;
+
+		cout << "select next move (w,s,a,d) for (up, down, left or right)" << endl;
+
 		cin >> move;
 
 		switch (move) {
+
 		case 'w':
 			gameboard[x_new - 1][y_new] = user;
 			isDone = true;
 			x_new = x_new - 1;
 			break;
+
 		case 's':
 			gameboard[x_new + 1][y_new] = user;
 			isDone = true;
 			x_new = x_new + 1;
 			break;
+
 		case 'a':
 			gameboard[x_new][y_new - 1] = user;
 			isDone = true;
 			y_new = y_new - 1;
 			break;
+
 		case 'd':
 			gameboard[x_new][y_new + 1] = user;
 			isDone = true;
@@ -238,14 +277,15 @@ void DCgame::moveUser() {
 		}
 	}
 
-
 	counter += 1;
 }
 
 bool DCgame::checkWin() {
 
-	if (counter == n) //to check win (using a counter) that user moved n times before hitting a trap.
+	if (counter == n) { //to check win (using a counter) that user moved n times before hitting a trap.
 		return true;
+	}
+
 	if (gameboard[x_new][y_new] == gameboard[x_target][y_target]) {
 		return true;
 	}
@@ -254,15 +294,15 @@ bool DCgame::checkWin() {
 
 bool DCgame::checkLoss() {
 	//check user does not hit trap
-	if (   gameboard[x_new][y_new] == gameboard[x_trap1][y_trap1]
-		|| gameboard[x_new][y_new] == gameboard[x_trap2][y_trap2]
-		|| gameboard[x_new][y_new] == gameboard[x_trap3][y_trap3]
-		|| gameboard[x_new][y_new] == gameboard[x_trap4][y_trap4]
-		|| gameboard[x_new][y_new] == gameboard[x_enemy1][y_enemy1]
-		|| gameboard[x_new][y_new] == gameboard[x_enemy2][y_enemy2]
-		|| gameboard[x_new][y_new] == gameboard[x_enemy3][y_enemy3]
-		|| gameboard[x_new][y_new] == gameboard[x_enemy4][y_enemy4]
-		|| gameboard[x_new][y_new] == gameboard[x_enemy5][y_enemy5]){
+	if (gameboard[x_new][y_new] == gameboard[x_trap1][y_trap1]
+			|| gameboard[x_new][y_new] == gameboard[x_trap2][y_trap2]
+			|| gameboard[x_new][y_new] == gameboard[x_trap3][y_trap3]
+			|| gameboard[x_new][y_new] == gameboard[x_trap4][y_trap4]
+			|| gameboard[x_new][y_new] == gameboard[x_enemy1][y_enemy1]
+			|| gameboard[x_new][y_new] == gameboard[x_enemy2][y_enemy2]
+			|| gameboard[x_new][y_new] == gameboard[x_enemy3][y_enemy3]
+			|| gameboard[x_new][y_new] == gameboard[x_enemy4][y_enemy4]
+			|| gameboard[x_new][y_new] == gameboard[x_enemy5][y_enemy5]) {
 
 		return true;
 	}
