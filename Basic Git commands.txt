@@ -66,6 +66,7 @@ Git init									Intiaises the local directory for Git to start tracking changes
 git status --untracked-files=no				If you want git to show only tracked files
 Git pull origin master						Updates local repository with any changes that might have occurred on the remote repository. Always recommended to perform a ‘pull’ just before a ‘push’
 Git push origin master						Updates the remote repository with the changes made in local repository
+git push -u origin master					The name of our remote is origin and the default local branch name is master. The -u tells Git to remember the parameters, so that next time we can simply run git push and Git will know what to do.
 Git ls-files								To list files being tracked by git.  Can also be used to find out if your file is being tracked by git in the current repository
 Git commit –am “adding more text”			Command to commit and add in a single step
 git commit -a								commit any files you've added with git add, also commit any files you've changed since then
@@ -84,8 +85,13 @@ git push origin :<branchname>				Delete a branch on your remote repository:
 git pull									Fetch and merge changes on the remote server to your working directory:
 git merge <branchname>						To merge a different branch into your active branch:
 git diff									View all the merge conflicts
+git diff HEAD								looks at what is different from our last commit by using the git diff command.
+git diff --staged							to see the changes you just staged
 git diff --base <filename>					View the conflicts against the base file
 git diff <sourcebranch> <targetbranch>		Preview changes, before merging:
+git reset <filename>						You can unstage files by using the git reset command. Go ahead and remove octofamily/octodog.txt.
+git checkout -- <target>					files can be changed back to how they were at the last commit by using the command: git checkout -- <target>
+git rm '*.txt'
 git add <filename>							After you have manually resolved any conflicts, you mark the changed file
 git tag 1.0.0 <commitID>					You can use tagging to mark a significant changeset, such as a release:	
 git log										CommitId is the leading characters of the changeset ID, up to 10, but must be unique. Get the ID using
@@ -93,9 +99,10 @@ git push --tags origin						Push all tags to remote repository
 git checkout -- <filename>					If you mess up, you can replace the changes in your working tree with the last content in head:
 											Changes already added to the index, as well as new files, will be kept
 git fetch origin							Instead, to drop all your local changes and commits, fetch the latest history from the server and point your local master branch at it, do this:							
-											git fetch origin
-											git reset --hard origin/master
+git fetch origin
+git reset --hard origin/master
 git grep "foo()"							Search the working directory for foo():
+git branch -d <branch name>					You can use git branch -d <branch name> to delete a branch. Go ahead and delete the clean_up branch now:
 
 
 
