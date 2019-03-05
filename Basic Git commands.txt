@@ -121,3 +121,94 @@ Start EXCEL.EXE // to open Excel
 https://blogs.technet.microsoft.com/heyscriptingguy/2015/06/11/table-of-basic-powershell-commands/
 
 
+==========Table of Basic PowerShell Commands===========
+https://blogs.technet.microsoft.com/heyscriptingguy/2015/06/11/table-of-basic-powershell-commands/
+
+============Introduction to Branching and Merging==========================
+source:
+https://www.youtube.com/watch?v=FyAAIHHClqI
+
+>mkdir netauto
+>cd netauto
+>git init
+>vi S1
+wq!
+> git add S1
+> git commit -m "create S1"
+> cp S1 S2
+> git add S2
+> git commit -m "create S2"
+> git log
+> git status
+> git log --all --decorate --oneline --graph
+> alias graph="git log --all --decorate --oneline --grapgh
+> graph
+> git branch SDN
+> git branch auth
+> git branch
+> graph
+==check out and work on the 3 branches==
+> graph
+> git checkout SDN
+> graph
+> git status
+> vi S1
+wq!
+> git add S1 ; git commit -m "SDN for S1"
+> graph
+> cat S1
+> git checkout auth
+> git branch
+> graph
+> cat S1
+> vi S1
+> git status
+> graph
+
+===Fast-Forward Merge==
+only possible is there is a direct path between the branch and master.
+> git status
+> git checkout master
+> git diff master..SDN
+> git merge SDN
+> cat S1
+> graph
+
+==Deleting Branches==
+Since SDN branch is merged to master (pointing yo same commit as master), 
+it's no longer needed. Can be deleted.
+Before deleting branches, check which branches have already been merged to master.
+> git branch --merged
+> git branch -d SDN
+> graph
+There is no direct path between auth branch and master, hence Fast-Forward merge not possible.
+
+===3-Way merge===
+In this case we need to merge auth and master into a new commit called merge commit.
+Git looks at 3 commits 
+i) the base commit 
+ii) current commits of each branch (master & auth)
+
+> git status
+> git merge auth
+> graph
+> git branch --merged
+> git branch -d suth
+
+===Merge conflicts===
+Merge conflicts occurs if we try to merge branches that have changed the same lines in the same files.
+> git check out -b dev
+> vi S1
+wq!
+> git commit -a -m "update S1 VLANs"
+Check out master and do changes on the master branch - change same lines
+> git checkout master
+> vi S1
+> git commit -a -m "update S1"
+> graph
+> git status 
+> git merge dev
+> status
+> git mmerge abort
+> 
+
